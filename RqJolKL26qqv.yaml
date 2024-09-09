@@ -3,7 +3,7 @@ allow-lan: false
 mode: Rule
 unified-delay: true
 log-level: info
-ipv6: true
+ipv6: false
 external-controller: 127.0.0.1:9090
 dns:
   enable: true
@@ -157,29 +157,207 @@ dns:
       "*.msftconnecttest.com": https://223.5.5.5/dns-query
       "*.msftncsi.com": https://223.5.5.5/dns-query
 proxies:
-🇯🇵 JP-E1=ss,p1p1p1e1.nod3.org,15091,encrypt-method=aes-128-gcm,password=cc24c61d-ae36-4e1b-9489-0ac1d6620dd1,tfo=true,udp-relay=true
-🇯🇵 JP-E11=ss,p1p1p1e1.nod3.org,42363,encrypt-method=aes-128-gcm,password=cc24c61d-ae36-4e1b-9489-0ac1d6620dd1,tfo=true,udp-relay=true
-🇭🇰 HK-S1 Hala=ss,p1p1p1s1.nod3.org,42357,encrypt-method=aes-128-gcm,password=cc24c61d-ae36-4e1b-9489-0ac1d6620dd1,tfo=true,udp-relay=true
-🇭🇰 HK-S1 Hytron=ss,p1p1p1s1.nod3.org,42357,encrypt-method=aes-128-gcm,password=cc24c61d-ae36-4e1b-9489-0ac1d6620dd1,tfo=true,udp-relay=true
+  - name: "1111"
+    type: ss
+    server: sg-iepl.com
+    port: 34456
+    cipher: aes-128-gcm
+    password: 3FezOkwhvB5vb3y25C13IYYtM6KbI37EjbX0lLlx7oo=
+  - name: tw
+    type: vless
+    server: theskejrt.top
+    port: 20132
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - name: "wg"
+    type: wireguard
+    server: engage.cloudflareclient.com
+    port: 2408
+    ip: 172.16.0.2
+    private-key: 8EgtZem9A0+DH3TkBeCKSjFgknnT5qhxtFJmk1yPoUg=
+    public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+    udp: true
+    reserved: [0,0,0]
+    remote-dns-resolve: true  
+    dns: [ 8.8.8.8 ]
+    dialer-proxy: 'sg01'    
+  - name: 'bjcu'
+    server: 35.241.70.12
+    port: 20132
+    type: vless
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+    dialer-proxy: '🇭🇰Hong Kong 08'  
+  - name: jp09
+    type: vless
+    server: 43.248.118.253
+    port: 9003
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - { name: sg09, type: trojan, server: ppg-hk.05b54rfhwh.online, port: 10809, password: a82e43e5-17e1-4fe4-8ebc-8aa6e92250ea, udp: true, sni: cloudflare.node-ssl.cdn-alibaba.com, skip-cert-verify: true }
+  - { name: sg01, type: ss, server: premium-line-s2-cnm.as9929.uk, port: 21916, cipher: aes-128-gcm, password: dc4fc297-899c-4592-bfec-fec4754be926, udp: true }
+  - name: vmhk
+    server: 34.96.241.190
+    port: 20132
+    type: vless
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - name: "7"
+    server: 8.134.222.232
+    port: 41123
+    type: vless
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - name: "11"
+    server: theskejrt.top
+    port: 38853
+    type: vless
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - name: "14"
+    server: sg-iepl.com
+    port: 38643
+    type: vless
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - name: 香港01
+    type: ss
+    server: 103.225.199.51
+    port: 2010
+    cipher: aes-128-gcm
+    password: 3FezOkwhvB5vb3y25C13IYYtM6KbI37EjbX0lLlx7oo=
+  - name: hkt
+    server: premium-line-s2-cnm.as9929.uk
+    port: 32363
+    type: vless
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - name: "15"
+    type: vless
+    server: 103.225.199.51
+    port: 20132
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+  - name: "vmess"
+    server: 35.241.70.12
+    port: 20132
+    type: vless
+    uuid: 058e0bf3-dd56-11e9-aa37-5600024c1d6a
+    network: tcp
+    dialer-proxy: '🇭🇰Hong Kong 05'
+  - name: "vmess-sg"
+    type: ss
+    server: sg-iepl.com
+    port: 43234
+    cipher: aes-128-gcm
+    password: 3FezOkwhvB5vb3y25C13IYYtM6KbI37EjbX07oo=
+
+  - { name: '🇭🇰 Hong Kong 01', type: ss, server: hk.888888.al, port: 30001, cipher: chacha20-ietf-poly1305, password: DD8A9BA9-95F6-47CF-AADC-10A0971A596A}
+  - { name: '🇭🇰 HK3 Gcore [0.2X]', type: ss, server: rs1.911-gt2-rs.com, port: 10502, cipher: aes-128-gcm, password: 8161618b-a53a-4b0d-9500-eda7af882a50, udp: true }
+  - { name: '🇭🇰 HK2 HKT', type: ss, server: rs1.911-gt2-rs.com, port: 10501, cipher: aes-128-gcm, password: 8161618b-a53a-4b0d-9500-eda7af882a50, udp: true }
+  - { name: '🇭🇰 HK18 Dmit [Aliyun 3X]', type: ss, server: cen.911-gt2-rs.com, port: 10512, cipher: aes-128-gcm, password: 8161618b-a53a-4b0d-9500-eda7af882a50, udp: true }
+  - { name: '🇭🇰 HK7 Dmit', type: ss, server: rs1.911-gt2-rs.com, port: 10506, cipher: aes-128-gcm, password: 8161618b-a53a-4b0d-9500-eda7af882a50, udp: true }
+  - { name: '🇭🇰Hong Kong 08', type: ss, server: 8.138.155.119, port: 30006, cipher: aes-256-gcm, password: 33cba450-887a-4321-bb3a-a268aa3a78a2, udp: true }
+  - { name: '🇭🇰 HK-S3 Hytron 油佬专线', type: ss, server: premium-line-s3-cnm.as9929.uk, port: 25699, cipher: aes-128-gcm, password: dc4fc297-899c-4592-bfec-fec4754be926, udp: true }
+  - { name: '🇨🇳 TW-S3 Akari', type: ss, server: premium-line-s3-cnm.as9929.uk, port: 29853, cipher: aes-128-gcm, password: dc4fc297-899c-4592-bfec-fec4754be926, udp: true }
+  - { name: '🇭🇰Hong Kong 05', type: ss, server: aligzin01.easay.xyz, port: 30077, cipher: aes-256-gcm, password: 33cba450-887a-4321-bb3a-a268aa3a78a2, udp: true }
+  - { name: '🇯🇵 JP-E1 Akari', type: ss, server: premium-e.as9929.uk, port: 54238, cipher: aes-128-gcm, password: dc4fc297-899c-4592-bfec-fec4754be926, udp: true }
+  - { name: '🇯🇵 JP-E1 Akari 0.2x', type: ss, server: premium-e.as9929.uk, port: 15091, cipher: aes-128-gcm, password: dc4fc297-899c-4592-bfec-fec4754be926, udp: true }
+  - {"name":"🇭🇰 HK[IEPL]-ss","server":"163.177.58.149","port":10001,"cipher":"aes-128-gcm","password":"Sj10bnYDe7w6V29E","type":"ss","plugin":"obfs","plugin-opts":{"mode":"http","host":"a5cfe690ed.m.ctrip.com"},"skip-cert-verify":true}
+  - { name: HK-B-ALI-1.0倍率, type: vless, server: 103.225.199.51, port: 10010, uuid: 048e0bf2-dd56-11e9-aa37-5600024c1d6a, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: chrome, servername: gamedownloads-rockstargames-com.akamaized.net, reality-opts: { public-key: pZORG9Y44KVFGXRV16FRcwwaJk4V-Zi6zgZcmjqeJUI, short-id: 6ba85179e30d41ab } }
+  - { name: '🇺🇸 US-E1 EMBY Shark 0.01x', type: ss, server: premium-e.as9929.uk, port: 39228, cipher: aes-128-gcm, password: dc4fc297-899c-4592-bfec-fec4754be926, udp: true }
+  - { name: '🇸🇬SG-04 S1', type: ss, server: aligzin01.easay.xyz, port: 30140, cipher: aes-256-gcm, password: 33cba450-887a-4321-bb3a-a268aa3a78a2, udp: true }
+  - {"name":"reality","server":"211.99.102.239","port":24084,"password":"4e20993d-1ee0-406d-9145-5cd9fc30ff86","sni":"v1-dy.ixigua.com","skip-cert-verify":true,"type":"trojan"}
+  - { name: '🇭🇰 HK-N1 Nearoute', type: ss, server: premium-line-n1-cnm.as9929.uk, port: 32258, cipher: aes-128-gcm, password: dc4fc297-899c-4592-bfec-fec4754be926, udp: true }
    
 
 proxy-groups:
+  - name: Relay
+    type: select
+    proxies:
+      - 7 #写机场分组的名字
+      - 11
   - name: 🚀 节点选择
     type: select
     proxies:
-      - 🇭🇰 HK-S1 Hala
-      - 🇭🇰 HK-S1 Hytron
-      - 🇯🇵 JP-E11
-      - 🇯🇵 JP-E1
+      - ⚖️ 负载均衡-轮询
+      - 🇭🇰 HK-N1 Nearoute
+      - reality
+      - 🇺🇸 US-E1 EMBY Shark 0.01x
+      - 🇭🇰 HK[IEPL]-ss
+      - HK-B-ALI-1.0倍率
+      - 香港01
+      - vmess-sg
+      - 🇭🇰 HK2 HKT
+      - 🇭🇰 HK18 Dmit [Aliyun 3X]
+      - 🇭🇰 Hong Kong 01
+      - 🇭🇰 HK3 Gcore [0.2X]
+      - 🇭🇰 HK7 Dmit
+      - "vmess"
+      - "1111"
+      - jp09
+      - sg09
+      - sg01      
+      - vmhk
+      - hkt   
+      - tw
+      - wg      
+      - "Relay"
+      - "7"
+      - "11"
+      - "14"     
+      - "22"
+      - "bjcu" 
+      - "15"
+      - "🇯🇵 JP-E1 Akari"      
+      - tvb
+      - 🇭🇰 HK3 Gcore [0.2X]
+      - 🇭🇰Hong Kong 05
       - DIRECT
+  - name: ⚖️ 负载均衡-轮询
+    proxies:
+      - "bjcu"
+      - "vmess"
+    type: load-balance
+    strategy: round-robin
+    url: http://www.google.com/generate_204
+    interval: 300
+  - name: "22"
+    proxies:
+      - "14"
+    type: load-balance
+    strategy: round-robin
+    url: http://www.google.com/generate_204
+    interval: 300
+  - name: tvb
+    proxies:
+      - hkt
+    type: load-balance
+    strategy: round-robin
+    url: http://www.google.com/generate_204
+    interval: 300
   - name: 📺 Emby影院
     proxies:
-      - 🇯🇵 JP-E11
-      - 🇯🇵 JP-E1
+      - 🇯🇵 JP-E1 Akari 0.2x
+      - 🇯🇵 JP-E1 Akari
+      - 🇨🇳 TW-S3 Akari
     type: load-balance
     strategy: round-robin
     url: http://www.google.com/generate_204
     interval: 300    
+  - name: tg
+    proxies:
+      - 🇸🇬SG-04 S1
+      - sg01
+    type: load-balance
+    strategy: round-robin
+    url: http://www.google.com/generate_204
+    interval: 300        
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
   - name: 🐟 漏网之鱼
     type: select
     proxies:
@@ -208,13 +386,29 @@ rules:
   - DOMAIN-SUFFIX,jingxi.com,DIRECT
   - DOMAIN-SUFFIX,ocent.net,DIRECT
   - DOMAIN,ocent.ne,DIRECT
+  - DOMAIN-SUFFIX,chat.openai.com,wg
+  - DOMAIN-KEYWORD,openai,wg
+  - DOMAIN-KEYWORD,chatgpt,wg
+  - 'IP-CIDR,91.108.56.157/32,tg,no-resolve'
   - DOMAIN-SUFFIX,s10.fsvod1.com,📺 Emby影院
   - DOMAIN-SUFFIX,preus.cn2gias.uk,📺 Emby影院
   - DOMAIN-SUFFIX,broadcom.com,🚀 节点选择  
+  - DOMAIN-SUFFIX,mytvsuper.com,14 
   - DOMAIN-KEYWORD,hangzhi,DIRECT
+  - DOMAIN-KEYWORD,doubleclick,tvb
   - DOMAIN-KEYWORD,nivod4,🚀 节点选择
   - DOMAIN-KEYWORD,nivodz,🚀 节点选择
   - DOMAIN-KEYWORD,nivodi,🚀 节点选择
+  - DOMAIN-KEYWORD,bet365,1111
+  - DOMAIN-SUFFIX,ana-js-dg6lzb57ha-an.a.run.app,tvb
+  - DOMAIN-SUFFIX,www.googletagmanager.com,tvb
+  - DOMAIN-SUFFIX,imasdk.googleapis.com,tvb
+  - DOMAIN-KEYWORD,facebook,tvb
+  - DOMAIN-KEYWORD,cdn2.ceres9350.com,tvb
+  - DOMAIN-SUFFIX,mytvsuper.com,tvb
+  - DOMAIN-SUFFIX,youbora.tvb.com,tvb
+  - DOMAIN-SUFFIX,cs.mytvsuper.com,tvb
+  - DOMAIN-SUFFIX,mytvsuperlimited.hb.omtrdc.net,tvb
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀 节点选择
   - DOMAIN-SUFFIX,services.googleapis.cn,🚀 节点选择
   - IP-CIDR,120.232.181.162/32,🚀 节点选择,no-resolve
