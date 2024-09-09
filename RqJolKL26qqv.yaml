@@ -164,8 +164,29 @@ proxies:
     cipher: aes-128-gcm
     password: 3FezOkwhvB5vb3y25C13IYYtM6KbI37EjbX0lLlx7oo=
 
+  - name: HK-Hytron
+    type: ss
+    server: p1p1p1s1.nod3.org
+    port: 42357
+    cipher: aes-128-gcm
+    password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
+    udp: true
 
+  - name: JP-Akari
+    type: ss
+    server: p1p1p1e1.nod3.org
+    port: 15091
+    cipher: aes-128-gcm
+    password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
+    udp: true
 
+  - name: JP-Akamai
+    type: ss
+    server: p1p1p1e1.nod3.org
+    port: 42363
+    cipher: aes-128-gcm
+    password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
+    udp: true
    
 
 proxy-groups:
@@ -173,9 +194,14 @@ proxy-groups:
     type: select
     proxies:
       - "1111"
+      - JP-Akamai
+      - JP-Akari
+      - HK-Hytron
   - name: 📺 Emby影院
     proxies:
-      - "1111"
+      - JP-Akamai
+      - JP-Akari
+      - HK-Hytron
     type: load-balance
     strategy: round-robin
     url: http://www.google.com/generate_204
