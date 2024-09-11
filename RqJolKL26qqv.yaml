@@ -174,7 +174,7 @@ proxies:
 
   - name: JP-Akari
     type: ss
-    server: p1p1p1e1.nod3.org
+    server: p341131e1.nod3.org
     port: 25092
     cipher: aes-128-gcm
     password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
@@ -182,7 +182,7 @@ proxies:
 
   - name: JP-Akamai
     type: ss
-    server: p1p1p1e1.nod3.org
+    server: p341131e1.nod3.org
     port: 42363
     cipher: aes-128-gcm
     password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
