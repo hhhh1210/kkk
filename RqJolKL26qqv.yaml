@@ -167,7 +167,7 @@ proxies:
   - name: HK-Hytron
     type: ss
     server: p1p1p1s1.nod3.org
-    port: 42357
+    port: 12357
     cipher: aes-128-gcm
     password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
     udp: true
@@ -175,7 +175,7 @@ proxies:
   - name: JP-Akari
     type: ss
     server: p1p1p1e1.nod3.org
-    port: 15091
+    port: 25092
     cipher: aes-128-gcm
     password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
     udp: true
