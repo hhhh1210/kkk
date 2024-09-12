@@ -1,5 +1,170 @@
+mixed-port: 7890
+allow-lan: false
+mode: Rule
+unified-delay: true
+log-level: info
+ipv6: false
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  ipv6: false
+  listen: '127.0.0.1:53'
+  default-nameserver:
+    - 223.5.5.5
+    - 223.6.6.6
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time-ios.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.qq.com
+    - +.tencent.com
+    - +.srv.nintendo.net
+    - "*.n.n.srv.nintendo.net"
+    - +.stun.playstation.net
+    - xbox.*.*.microsoft.com
+    - "*.*.xboxlive.com"
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - na.b.g-tun.com
+    - +.nflxvideo.net
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.ff14.sdo.com"
+    - ff.dorado.sdo.com
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+    - shark007.net
+    - Mijia Cloud
+    - +.cmbchina.com
+    - +.cmbimg.com
+    - local.adguard.org
+    - +.sandai.net
+    - +.n0808.com
+    - +.dns.google
+    - +.dns.cloudflare.com
+    - +.jd.com
+    - +.weibo.com
+    - +.cowtransfer.com
+    - +.battle.net
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+    - https://223.6.6.6/dns-query
+  fallback:
+    - tls://dns.google:853
+    - tls://cloudflare-dns.com
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - +.google.com
+      - +.facebook.com
+      - +.youtube.com
+      - +.crisp.chat
+      - +.githubusercontent.com
+      - +.googlevideo.com
+      - +.msftconnecttest.com
+      - +.msftncsi.com
+      - msftconnecttest.com
+      - msftncsi.com
+    nameserver-policy:
+      "*.msftconnecttest.com": https://223.5.5.5/dns-query
+      "*.msftncsi.com": https://223.5.5.5/dns-query
 proxies:
-  - name: 🇭🇰 HK-S1 Hytron
+  - name: "1111"
+    type: ss
+    server: sg-iepl.com
+    port: 34456
+    cipher: aes-128-gcm
+    password: 3FezOkwhvB5vb3y25C13IYYtM6KbI37EjbX0lLlx7oo=
+
+  - name: HK-S1 Hytron
     type: ss
     server: p34511s1.nod3.org
     port: 12357
@@ -7,7 +172,7 @@ proxies:
     password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
 
 
-  - name: 🇯🇵 JP-E1 Akari
+  - name: JP-E1 Akari
     type: ss
     server: p341131e1.nod3.org
     port: 25092
@@ -16,9 +181,72 @@ proxies:
 
 
 
-  - name: 🇯🇵 JP-E1 Akamai
+  - name: JP-E1 Akamai
     type: ss
     server: p341131e1.nod3.org
     port: 42363
     cipher: aes-128-gcm
     password: cc24c61d-ae36-4e1b-9489-0ac1d6620dd1
+   
+
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - "1111"
+      - HK-S1 Hytron
+      - JP-E1 Akari
+      - JP-E1 Akamai
+  - name: 📺 Emby影院
+    proxies:
+      - "1111"
+      - HK-S1 Hytron
+      - JP-E1 Akari
+      - JP-E1 Akamai
+    type: load-balance
+    strategy: round-robin
+    url: http://www.google.com/generate_204
+    interval: 300        
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+rules:
+  - DOMAIN-SUFFIX,seed-sequoia.siri.apple.com,DIRECT
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-SUFFIX,huya.com,DIRECT
+  - DOMAIN-SUFFIX,node.ppio.cloud,DIRECT
+  - DOMAIN-SUFFIX,v.smtcdns.net,DIRECT
+  - DOMAIN,www.huya.com,DIRECT
+  - DOMAIN-SUFFIX,douyu.com,DIRECT
+  - DOMAIN-SUFFIX,mobgslb.tbcache.com,DIRECT
+  - DOMAIN-SUFFIX,szbdyd.com,DIRECT
+  - DOMAIN-SUFFIX,ksyungslb.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,futunn.com,DIRECT
+  - DOMAIN,tplogin.cn,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+  - DOMAIN-SUFFIX,edgesrv.com,DIRECT
+  - DOMAIN-SUFFIX,crashlytics.com,DIRECT
+  - DOMAIN,export.shobserver.com,DIRECT
+  - DOMAIN-SUFFIX,bytefcdnrd.com,DIRECT
+  - DOMAIN-SUFFIX,sso.com,DIRECT
+  - DOMAIN-SUFFIX,jingxi.com,DIRECT
+  - DOMAIN-SUFFIX,ocent.net,DIRECT
+  - DOMAIN,ocent.ne,DIRECT
+  - DOMAIN-SUFFIX,s10.fsvod1.com,📺 Emby影院
+  - DOMAIN-SUFFIX,preus.cn2gias.uk,📺 Emby影院
+  - DOMAIN-SUFFIX,broadcom.com,🚀 节点选择  
+  - DOMAIN-KEYWORD,hangzhi,DIRECT
+  - DOMAIN-KEYWORD,nivod4,🚀 节点选择
+  - DOMAIN-KEYWORD,nivodz,🚀 节点选择
+  - DOMAIN-KEYWORD,nivodi,🚀 节点选择
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀 节点选择
+  - DOMAIN-SUFFIX,services.googleapis.cn,🚀 节点选择
+  - GEOIP,CN,DIRECT,no-resolve
+  - MATCH,🚀 节点选择
