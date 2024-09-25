@@ -1,7 +1,7 @@
 # url 里填写自己的订阅,名称不能重复
 proxy-providers:
   provider1:
-    url: "订阅链接"
+    url: "https://911tg3rs.com/api/v1/client/subscribe?token=eb8046ffea63d9a5429906abf3cbad96"
     type: http
     interval: 7200
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
