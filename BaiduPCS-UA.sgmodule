@@ -1,0 +1,24 @@
+#!name= BaiduPCS UA Fix
+#!desc= Force pan.baidu.com UA + Referer for baidupcs/bcebos/pcs domains. Needed for >50MB files.
+
+[Header Rewrite]
+# ---- baidupcs ----
+^https?:\/\/[^\/]*baidupcs\.com\/  header-del  User-Agent
+^https?:\/\/[^\/]*baidupcs\.com\/  header-add  User-Agent  pan.baidu.com
+^https?:\/\/[^\/]*baidupcs\.com\/  header-del  Icy-MetaData
+^https?:\/\/[^\/]*baidupcs\.com\/  header-add  Referer  https://pan.baidu.com/
+
+# ---- bcebos (常见跳转域) ----
+^https?:\/\/[^\/]*bcebos\.com\/    header-del  User-Agent
+^https?:\/\/[^\/]*bcebos\.com\/    header-add  User-Agent  pan.baidu.com
+^https?:\/\/[^\/]*bcebos\.com\/    header-del  Icy-MetaData
+^https?:\/\/[^\/]*bcebos\.com\/    header-add  Referer  https://pan.baidu.com/
+
+# ---- pcs.baidu.com（老域名） ----
+^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-del  User-Agent
+^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-add  User-Agent  pan.baidu.com
+^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-del  Icy-MetaData
+^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-add  Referer  https://pan.baidu.com/
+
+[MITM]
+hostname = %APPEND% *.baidupcs.com,*.bcebos.com,pcs.baidu.com
