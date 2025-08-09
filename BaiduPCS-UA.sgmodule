@@ -1,24 +1,17 @@
-#!name= BaiduPCS UA Fix
-#!desc= Force pan.baidu.com UA + Referer for baidupcs/bcebos/pcs domains. Needed for >50MB files.
+#!name= BaiduPCS UA Fix (match-all)
+#!desc= Force UA=pan.baidu.com + drop Icy-MetaData + add Referer for baidupcs/bcebos/pcs. Match-all then filter by Host inside script for robustness.
 
-[Header Rewrite]
-# ---- baidupcs ----
-^https?:\/\/[^\/]*baidupcs\.com\/  header-del  User-Agent
-^https?:\/\/[^\/]*baidupcs\.com\/  header-add  User-Agent  pan.baidu.com
-^https?:\/\/[^\/]*baidupcs\.com\/  header-del  Icy-MetaData
-^https?:\/\/[^\/]*baidupcs\.com\/  header-add  Referer  https://pan.baidu.com/
-
-# ---- bcebos (常见跳转域) ----
-^https?:\/\/[^\/]*bcebos\.com\/    header-del  User-Agent
-^https?:\/\/[^\/]*bcebos\.com\/    header-add  User-Agent  pan.baidu.com
-^https?:\/\/[^\/]*bcebos\.com\/    header-del  Icy-MetaData
-^https?:\/\/[^\/]*bcebos\.com\/    header-add  Referer  https://pan.baidu.com/
-
-# ---- pcs.baidu.com（老域名） ----
-^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-del  User-Agent
-^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-add  User-Agent  pan.baidu.com
-^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-del  Icy-MetaData
-^https?:\/\/[^\/]*pcs\.baidu\.com\/  header-add  Referer  https://pan.baidu.com/
+[Script]
+# 匹配所有请求，脚本里再按 Host 过滤
+baidupcs-ua = type=http-request,pattern=.+,requires-body=false,timeout=10,script-path=/Users/aa/Documents/baidupcs-ua.js
 
 [MITM]
+# HTTPS 任一跳出现时需要 MITM 才能改头；HTTP 不需要
 hostname = %APPEND% *.baidupcs.com,*.bcebos.com,pcs.baidu.com
+
+[Rule]
+# 强制这些域名走同一出口，避免大文件多段请求落在不同 IP 触发 403
+# 把 YOUR_POLICY 改成你获取直链时用的“同一个”策略（DIRECT 或某个固定节点，如 HK-01）
+DOMAIN-SUFFIX,baidupcs.com,YOUR_POLICY
+DOMAIN-SUFFIX,bcebos.com,YOUR_POLICY
+DOMAIN,pcs.baidu.com,YOUR_POLICY
