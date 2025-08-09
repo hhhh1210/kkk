@@ -1,17 +1,22 @@
-#!name= BaiduPCS UA Fix (match-all)
-#!desc= Force UA=pan.baidu.com + drop Icy-MetaData + add Referer for baidupcs/bcebos/pcs. Match-all then filter by Host inside script for robustness.
+#!name= BaiduPCS UA Debug
+#!desc= Force UA=pan.baidu.com, drop Icy-MetaData, add Referer. Also add X-Surge-Debug to confirm matching.
+
+[Header Rewrite]
+^https?:\/\/[^\/]*(?:baidupcs\.com|bcebos\.com|pcs\.baidu\.com)\/  header-del  User-Agent
+^https?:\/\/[^\/]*(?:baidupcs\.com|bcebos\.com|pcs\.baidu\.com)\/  header-add  User-Agent  pan.baidu.com
+^https?:\/\/[^\/]*(?:baidupcs\.com|bcebos\.com|pcs\.baidu\.com)\/  header-del  Icy-MetaData
+^https?:\/\/[^\/]*(?:baidupcs\.com|bcebos\.com|pcs\.baidu\.com)\/  header-add  Referer  https://pan.baidu.com/
+^https?:\/\/[^\/]*(?:baidupcs\.com|bcebos\.com|pcs\.baidu\.com)\/  header-add  X-Surge-Debug  ua-rewrite-on
 
 [Script]
-# 匹配所有请求，脚本里再按 Host 过滤
+# 兜底：匹配所有请求，脚本里按 Host 过滤，并弹通知，确保看得到脚本命中
 baidupcs-ua = type=http-request,pattern=.+,requires-body=false,timeout=10,script-path=/Users/aa/Documents/baidupcs-ua.js
 
 [MITM]
-# HTTPS 任一跳出现时需要 MITM 才能改头；HTTP 不需要
 hostname = %APPEND% *.baidupcs.com,*.bcebos.com,pcs.baidu.com
 
 [Rule]
-# 强制这些域名走同一出口，避免大文件多段请求落在不同 IP 触发 403
-# 把 YOUR_POLICY 改成你获取直链时用的“同一个”策略（DIRECT 或某个固定节点，如 HK-01）
+# 固定出口，避免大文件多段走不同 IP（把 YOUR_POLICY 改成你获取直链时使用的同一个策略，比如 DIRECT 或某个固定节点名）
 DOMAIN-SUFFIX,baidupcs.com,YOUR_POLICY
 DOMAIN-SUFFIX,bcebos.com,YOUR_POLICY
 DOMAIN,pcs.baidu.com,YOUR_POLICY
